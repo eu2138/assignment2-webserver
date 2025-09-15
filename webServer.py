@@ -4,7 +4,6 @@ from socket import *
 import sys
 
 
-
 def webServer(port=13331):
     serverSocket = socket(AF_INET, SOCK_STREAM)
 
@@ -22,13 +21,20 @@ def webServer(port=13331):
         print('Ready to serve...')
         connectionSocket, addr = serverSocket.accept() #Fill in start -are you accepting connections?     #Fill in end
 
+        print("Got connection from ", addr)
+
         try:
-            message = connectionSocket.recv(1024)#Fill in start -a client is sending you a message   #Fill in end 
+            print("hello world")
+            # message = connectionSocket.recv(1024)#Fill in start -a client is sending you a message   #Fill in end 
+            message = "0 /helloworld.txt"
             filename = message.split()[1]
+            print(filename[1:])
 
             #opens the client requested file. 
             #Plenty of guidance online on how to open and read a file in python. How should you read it though if you plan on sending it through a socket?
-            f = open(filename[1:], "rw")     #fill in start              #fill in end   )
+            f = open(filename[1:], "r")     #fill in start              #fill in end   )
+
+            message += f.read()
 
 
 
@@ -36,15 +42,16 @@ def webServer(port=13331):
             #Fill in start 
                   
             #Content-Type is an example on how to send a header as bytes. There are more!
-            outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
+        #    outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
 
 
             #Note that a complete header must end with a blank line, creating the four-byte sequence "\r\n\r\n" Refer to https://w3.cs.jmu.edu/kirkpams/OpenCSF/Books/csf/html/TCPSockets.html
 
             #Fill in end
-               
-            for i in f: #for line in file
-                print(i)
+
+        #    for i in f: #for line in file
+        #        print("hello")
+            #    print(f)
             #    print(i)
             #Fill in start - append your html file contents #Fill in end 
 
@@ -56,10 +63,13 @@ def webServer(port=13331):
 
             # Fill in end
 
-            connectionSocket.close() #closing the connection socket
+        #    connectionSocket.close() #closing the connection socket
+
+            connectionSocket.close()
 
         except Exception as e:
-            print(e)
+            print("hello")
+        #    print(e)
             # Send response message for invalid request due to the file not being found (404)
             # Remember the format you used in the try: block!
             #Fill in start
