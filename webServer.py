@@ -36,21 +36,19 @@ def webServer(port=13331):
 
             message += f.read()
 
-
-
             #This variable can store the headers you want to send for any valid or invalid request.   What header should be sent for a response that is ok?    
             #Fill in start 
                   
             #Content-Type is an example on how to send a header as bytes. There are more!
-        #    outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
+            outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
 
 
             #Note that a complete header must end with a blank line, creating the four-byte sequence "\r\n\r\n" Refer to https://w3.cs.jmu.edu/kirkpams/OpenCSF/Books/csf/html/TCPSockets.html
 
             #Fill in end
 
-        #    for i in f: #for line in file
-        #        print("hello")
+            for i in f: #for line in file
+                print("hello")
             #    print(f)
             #    print(i)
             #Fill in start - append your html file contents #Fill in end 
