@@ -27,7 +27,6 @@ def webServer(port=13331):
       
       #opens the client requested file. 
       #Plenty of guidance online on how to open and read a file in python. How should you read it though if you plan on sending it through a socket?
-      # print(filename[1:])
       f = open(filename[1:], "r+")    #fill in start              #fill in end   )
 
       #This variable can store the headers you want to send for any valid or invalid request.   What header should be sent for a response that is ok?    
@@ -72,8 +71,9 @@ def webServer(port=13331):
       # Remember the format you used in the try: block!
       #Fill in start
 
-      header = f"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: 112\r\n\r\n"
-      print(header)
+      header = f"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nServer: nginx/1.18.0\n\rConnection: keep-alive\r\nContent-Length: 154\r\n"
+      content = header + "404 Not Found\r\n"
+      connectionSocket.sendall(content.encode('utf-8'))
 
       #Fill in end
 
