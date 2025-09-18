@@ -73,7 +73,7 @@ def webServer(port=13331):
       # Remember the format you used in the try: block!
       #Fill in start
 
-      print(f"404 Not Found")
+      header = f"HTTP/1.1 404 OK\r\nContent-Type: text/html\r\n\r\n"
 
       #Fill in end
 
