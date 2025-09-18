@@ -54,7 +54,7 @@ def webServer(port=13331):
 
 
       #Content-Type is an example on how to send a header as bytes. There are more!
-      header = f"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: {content_length}\r\n\r\n"
+      header = f"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nServer: nginx/1.18.0\r\nConnection: keep-alive\r\n\r\n"
 
       content = header + content
       content = content.encode('utf-8')
@@ -71,7 +71,7 @@ def webServer(port=13331):
       # Remember the format you used in the try: block!
       #Fill in start
 
-      header = f"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nServer: nginx/1.18.0\n\rConnection: keep-alive\r\nContent-Length: 154\r\n"
+      header = f"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nServer: nginx/1.18.0\r\nConnection: keep-alive\r\n\r\n"
       content = header + "404 Not Found\r\n"
       connectionSocket.sendall(content.encode('utf-8'))
 
