@@ -22,16 +22,13 @@ def webServer(port=13331):
     connectionSocket, addr = serverSocket.accept()#Fill in start -are you accepting connections?     #Fill in end
     
     try:
-      message = "0 /helloworld.html"
+      message = connectionSocket.recv(1024);
       filename = message.split()[1]
-      # message = #Fill in start -a client is sending you a message   #Fill in end 
-      # filename = message.split()[1]
       
       #opens the client requested file. 
       #Plenty of guidance online on how to open and read a file in python. How should you read it though if you plan on sending it through a socket?
+      # print(filename[1:])
       f = open(filename[1:], "r+")    #fill in start              #fill in end   )
-      
-      
 
       #This variable can store the headers you want to send for any valid or invalid request.   What header should be sent for a response that is ok?    
       #Fill in start 
@@ -56,6 +53,7 @@ def webServer(port=13331):
 
       content_length = len(content.encode('utf-8'))
 
+
       #Content-Type is an example on how to send a header as bytes. There are more!
       header = f"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: {content_length}\r\n\r\n"
 
@@ -73,7 +71,7 @@ def webServer(port=13331):
       # Remember the format you used in the try: block!
       #Fill in start
 
-      header = f"HTTP/1.1 404 OK\r\nContent-Type: text/html\r\n\r\n"
+      header = f"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: 112\r\n\r\n"
 
       #Fill in end
 
